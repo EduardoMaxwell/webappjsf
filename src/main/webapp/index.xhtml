@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <div style="display: flex; justify-content: center; justify-items: center; height: 60px; background: aquamarine; ">
+        <h2>Cadastro</h2>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputText value="Id"/>
+                <h:inputText value="#{userBean.user.id}"/>
+
+                <h:outputText value="Nome"/>
+                <h:inputText value="#{userBean.user.nome}"/>
+
+                <h:commandButton value="Salvar" action="#{userBean.insereOuAtualiza}"/>
+            </h:panelGrid>
+        </h:form>
+    </div>
+    <h5>Usuarios Ativos</h5>
+    <div >
+        <h:form>
+            <h:dataTable cellpadding="2" cellspacing="2" border="1" var="user" value="#{userBean.userList()}">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{user.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">NOME</f:facet>
+                    #{user.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Opções</f:facet>
+                    <h:commandLink value="Excluir" action="#{userBean.remove(user)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </div>
+</f:view>
+</html>
